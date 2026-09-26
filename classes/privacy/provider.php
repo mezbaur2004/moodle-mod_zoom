@@ -130,10 +130,10 @@ class provider implements core_userlist_provider, metadata_provider, request_plu
 
         $sql = 'SELECT c.id
                   FROM {context} c
-            INNER JOIN {course_modules} cm ON cm.id = c.instanceid AND c.contextlevel = :contextlevel
-            INNER JOIN {modules} m ON m.id = cm.module AND m.name = :modname
-            INNER JOIN {zoom_grade_occurrences} zgo ON zgo.zoomid = cm.instance
-            INNER JOIN {zoom_grade_occurrence_users} zgou ON zgou.occurrenceid = zgo.id
+                  JOIN {course_modules} cm ON cm.id = c.instanceid AND c.contextlevel = :contextlevel
+                  JOIN {modules} m ON m.id = cm.module AND m.name = :modname
+                  JOIN {zoom_grade_occurrences} zgo ON zgo.zoomid = cm.instance
+                  JOIN {zoom_grade_occurrence_users} zgou ON zgou.occurrenceid = zgo.id
                  WHERE zgou.userid = :userid
         ';
 
@@ -313,10 +313,10 @@ class provider implements core_userlist_provider, metadata_provider, request_plu
                        zgou.timemodified,
                        cm.id AS cmid
                   FROM {context} c
-            INNER JOIN {course_modules} cm ON cm.id = c.instanceid AND c.contextlevel = :contextlevel
-            INNER JOIN {modules} m ON m.id = cm.module AND m.name = :modname
-            INNER JOIN {zoom_grade_occurrences} zgo ON zgo.zoomid = cm.instance
-            INNER JOIN {zoom_grade_occurrence_users} zgou ON zgou.occurrenceid = zgo.id
+                  JOIN {course_modules} cm ON cm.id = c.instanceid AND c.contextlevel = :contextlevel
+                  JOIN {modules} m ON m.id = cm.module AND m.name = :modname
+                  JOIN {zoom_grade_occurrences} zgo ON zgo.zoomid = cm.instance
+                  JOIN {zoom_grade_occurrence_users} zgou ON zgou.occurrenceid = zgo.id
                  WHERE c.id $contextsql
                        AND zgou.userid = :userid
               ORDER BY cm.id ASC, zgo.occurrencetime ASC
